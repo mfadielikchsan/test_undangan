@@ -634,59 +634,84 @@ body {
             }, 1200); // delay biar kayak orang bales
         }
 
-        function getBotReply(message) {
-            const msg = message.toLowerCase();
+function getBotReply(message) {
+    const msg = message.toLowerCase();
 
-            if (/hadir|insyaallah|ikut|datang|pasti/.test(msg))
-                return `Terima kasih ${guestName}! 💚 Kami sangat senang jika ${guestName} bisa hadir di hari bahagia kami 🤗`;
+    // === Balasan sesuai keyword ===
+    if (/hadir|insyaallah|ikut|datang|pasti/.test(msg))
+        return `Terima kasih ${guestName}! 💚 Kami sangat senang jika ${guestName} bisa hadir di hari bahagia kami 🤗`;
 
-            if (/tidak|nggak|ga bisa|maaf|gak bisa|berhalangan|di luar kota/.test(msg))
-                return `Tidak apa-apa ${guestName}, doa terbaik dari jauh pun sudah membuat kami bahagia 💚`;
+    if (/tidak|nggak|ga bisa|maaf|gak bisa|berhalangan|di luar kota/.test(msg))
+        return `Tidak apa-apa ${guestName}, doa terbaik dari jauh pun sudah membuat kami bahagia 💚`;
 
-            if (/selamat|barakallah|bahagia|congrats|semoga|doa/.test(msg))
-                return `Aamiin, terima kasih banyak ${guestName}! 🤍 Doa dan ucapan indahmu sangat berarti untuk kami.`;
+    if (/selamat|barakallah|bahagia|congrats|semoga|doa/.test(msg))
+        return `Aamiin, terima kasih banyak ${guestName}! 🤍 Doa dan ucapan indahmu sangat berarti untuk kami.`;
 
-            if (/jam|pukul|waktu|kapan/.test(msg))
-                return `⏰ Acara dimulai *Sabtu, 25 Oktober 2025 pukul 10.00 WIB* di Gedung Serbaguna Bahagia.`;
+    if (/jam|pukul|waktu|kapan/.test(msg))
+        return `⏰ Acara dimulai <b>Sabtu, 25 Oktober 2025 pukul 10.00 WIB</b> di Gedung Serbaguna Bahagia.`;
 
-            if (/lokasi|tempat|alamat|gedung|maps|dimana|di mana/.test(msg))
-                return `📍 Acara di *Gedung Serbaguna Bahagia*, Jl. Mawar No. 123, Jakarta. <br>👉 <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank" style="color:#25d366;text-decoration:none;">Lihat Lokasi di Google Maps</a>`;
+    if (/lokasi|tempat|alamat|gedung|maps|dimana|di mana/.test(msg))
+        return `📍 Acara di <b>Gedung Serbaguna Bahagia</b>, Jl. Mawar No. 123, Jakarta.<br>👉 <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank" style="color:#25d366;text-decoration:none;">Lihat Lokasi di Google Maps</a>`;
 
-            if (/dress|tema|baju|pakaian|warna/.test(msg))
-                return `✨ Tidak ada dresscode khusus, ${guestName}. Tapi kalau mau, nuansa *hijau tosca* cocok banget dengan tema dekor kami 🌿`;
+    if (/dress|tema|baju|pakaian|warna/.test(msg))
+        return `✨ Tidak ada dresscode khusus, ${guestName}. Tapi kalau mau, nuansa <b>hijau tosca</b> cocok banget dengan tema dekor kami 🌿`;
 
-            if (/amplop|rekening|hadiah|kado|transfer|qris|sumbangan/.test(msg))
-                return `🎁 Terima kasih atas perhatiannya ${guestName}! Jika ingin memberikan tanda kasih, bisa melalui rekening BCA *1234567890 a.n. Fadiel & Silva* atau scan QR yang tersedia di undangan 💚`;
+    if (/amplop|rekening|hadiah|kado|transfer|qris|sumbangan/.test(msg))
+        return `🎁 Terima kasih atas perhatiannya ${guestName}! Jika ingin memberikan tanda kasih, bisa melalui rekening BCA <b>1234567890 a.n. Fadiel & Silva</b> atau scan QR yang tersedia di undangan 💚`;
 
-            if (/musik|lagu|backsound|suara/.test(msg))
-                return `🎶 Musik latar sudah diputar, ${guestName}. Semoga menambah suasana hangat saat menikmati undangan kami 💕`;
+    if (/musik|lagu|backsound|suara/.test(msg))
+        return `🎶 Musik latar sudah diputar, ${guestName}. Semoga menambah suasana hangat saat menikmati undangan kami 💕`;
 
-            if (/fadiel|silva|pengantin|cerita|kisah/.test(msg))
-                return `💍 Fadiel & Silva adalah dua insan yang dipertemukan dengan cara sederhana, namun penuh makna. Semoga kisah kami menjadi doa indah juga untukmu 🤍`;
+    if (/fadiel|silva|pengantin|cerita|kisah/.test(msg))
+        return `💍 Fadiel & Silva adalah dua insan yang dipertemukan dengan cara sederhana namun penuh makna. Semoga kisah kami menjadi doa indah juga untukmu 🤍`;
 
-            if (/bikin|undangan online|website|buat/.test(msg))
-                return `🌐 Undangan ini dibuat langsung oleh Fadiel dengan penuh cinta dan sedikit sentuhan kode 😄`;
+    if (/bikin|undangan online|website|buat/.test(msg))
+        return `🌐 Undangan ini dibuat langsung oleh Fadiel dengan penuh cinta dan sedikit sentuhan kode 😄`;
 
-            if (/makan|doorprize|artis|parkir|mc/.test(msg))
-                return `😂 Haha, pertanyaannya seru banget ${guestName}! Datang aja ya, biar tahu jawabannya di tempat 😄`;
+    if (/makan|doorprize|artis|parkir|mc/.test(msg))
+        return `😂 Haha, pertanyaannya seru banget ${guestName}! Datang aja ya, biar tahu jawabannya di tempat 😄`;
 
-            // fallback default
-            return `Terima kasih ${guestName}! 😊
-            Sepertinya aku belum paham maksud pesannya nih 😅<br>
-            Tapi ${guestName} bisa coba ketik salah satu dari daftar ini, nanti aku bantu jawab otomatis ya 💚<br><br>
-            📌 *Beberapa hal yang sering ditanyakan:*
-            <br>• Ketik *hadir* → untuk konfirmasi kehadiran
-            <br>• Ketik *tidak hadir* → kalau berhalangan hadir
-            <br>• Ketik *lokasi* / *alamat* → untuk lihat tempat acara & link Google Maps
-            <br>• Ketik *waktu* / *jam* → untuk tahu jadwal lengkap acaranya
-            <br>• Ketik *tema* / *dresscode* → untuk tahu warna & gaya pakaian
-            <br>• Ketik *hadiah* / *amplop* / *rekening* → untuk info rekening & QR kado digital
-            <br>• Ketik *musik* / *lagu* → untuk putar musik latar undangan 🎶
-            <br>• Ketik *cerita* / *kisah* → untuk tahu sedikit tentang Fadiel & Silva 💍
-            <br>• Ketik *bikin undangan* / *website* → kalau mau tahu siapa yang buat 😄
-            <br><br>Kalau ${guestName} masih bingung, ketik aja *bantuan* — nanti aku bantu arahkan ✨`;
+    if (/halo|hai|assalamu|selamat/.test(msg))
+        return `Hai ${guestName}! 👋 Senang banget kamu udah mampir ke undangan kami 💚<br>Ketik <b>hadir</b> untuk konfirmasi, atau <b>info</b> untuk lihat detail acara ya! 😊`;
 
-        }
+    if (/info|acara|detail/.test(msg))
+        return `📅 <b>Detail Acara:</b><br>
+        Tanggal: <b>Sabtu, 25 Oktober 2025</b><br>
+        Waktu: <b>10.00 WIB - selesai</b><br>
+        Lokasi: <b>Gedung Serbaguna Bahagia, Jl. Mawar No. 123, Jakarta</b><br>
+        Tema: <b>Hijau Tosca & Putih</b> 🌿`;
+
+    if (/bantuan|help|faq|pertanyaan/.test(msg))
+        return `💬 Berikut beberapa hal yang bisa ${guestName} tanyakan:<br>
+        • <b>hadir</b> → konfirmasi kehadiran<br>
+        • <b>tidak hadir</b> → berhalangan hadir<br>
+        • <b>lokasi</b> / <b>alamat</b> → lihat tempat acara<br>
+        • <b>waktu</b> / <b>jam</b> → lihat jadwal acara<br>
+        • <b>tema</b> / <b>dresscode</b> → tahu warna pakaian<br>
+        • <b>hadiah</b> / <b>amplop</b> → info rekening & QR<br>
+        • <b>musik</b> / <b>lagu</b> → putar musik latar<br>
+        • <b>cerita</b> / <b>kisah</b> → tahu tentang Fadiel & Silva<br>
+        • <b>website</b> / <b>buat</b> → info siapa yang membuat undangan<br><br>
+        Ketik salah satu kata di atas aja, nanti aku jawab otomatis 💚`;
+
+    // === Fallback Default (pesan di luar konteks) ===
+    return `Terima kasih ${guestName}! 😊<br>
+    Sepertinya aku belum paham maksud pesannya nih 😅<br>
+    Tapi ${guestName} bisa coba ketik salah satu dari daftar ini, nanti aku bantu jawab otomatis ya 💚<br><br>
+    📌 <b>Beberapa hal yang sering ditanyakan:</b><br>
+    • <b>hadir</b> → untuk konfirmasi kehadiran<br>
+    • <b>tidak hadir</b> → kalau berhalangan hadir<br>
+    • <b>lokasi</b> / <b>alamat</b> → untuk lihat tempat acara & link Google Maps<br>
+    • <b>waktu</b> / <b>jam</b> → untuk tahu jadwal lengkap acaranya<br>
+    • <b>tema</b> / <b>dresscode</b> → untuk tahu warna & gaya pakaian<br>
+    • <b>hadiah</b> / <b>amplop</b> / <b>rekening</b> → untuk info rekening & QR kado digital<br>
+    • <b>musik</b> / <b>lagu</b> → untuk putar musik latar undangan 🎶<br>
+    • <b>cerita</b> / <b>kisah</b> → untuk tahu sedikit tentang Fadiel & Silva 💍<br>
+    • <b>website</b> / <b>buat</b> → kalau mau tahu siapa yang membuat undangan 😄<br>
+    • <b>bantuan</b> / <b>faq</b> → untuk lihat daftar lengkap pertanyaan yang bisa dijawab<br><br>
+    Kalau ${guestName} masih bingung, ketik aja <b>bantuan</b> — nanti aku bantu arahkan ✨`;
+}
+
 
 
         // Fungsi untuk menambahkan bubble bot
