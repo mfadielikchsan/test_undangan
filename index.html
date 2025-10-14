@@ -5,353 +5,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitation Fadiel</title>
     <style>
-            body {
-                background: #ece5dd;
-                font-family: 'Segoe UI', Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                min-height: 100vh;
-            }
-            .wa-bg {
-                background-image: url('https://i.ibb.co/6WZb7Qp/wa-bg.png');
-                background-size: 400px 400px;
-                background-repeat: repeat;
-                min-height: 100vh;
-                width: 100vw;
-                position: fixed;
-                top: 0; left: 0;
-                z-index: 0;
-            }
-            .wa-real-container {
-                max-width: 430px;
-                margin: 40px auto;
-                background: #fff;
-                border-radius: 24px;
-                box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-                overflow: hidden;
-                width: 100%;
-                position: relative;
-                z-index: 1;
-            }
-            .wa-topbar {
-                background: linear-gradient(90deg, #075e54 80%, #128c7e 100%);
-                color: #fff;
-                display: flex;
-                align-items: center;
-                padding: 10px 14px;
-                gap: 10px;
-                box-shadow: 0 2px 8px rgba(7,94,84,0.08);
-                width: 100vw;
-                max-width: 100vw;
-                margin: 0 auto;
-                border-top-left-radius: 24px;
-                border-top-right-radius: 24px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 10;
-            }
-        .wa-back {
-            font-size: 1.5em;
-            cursor: pointer;
-            margin-right: 6px;
-        }
-        .wa-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #25d366;
-        }
-        .wa-chat-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 8px;
-        }
-            .wa-chat-title {
-                font-weight: 600;
-                font-size: 1.1em;
-                color: #fff;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }
-            .wa-chat-title img {
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                border: 1.5px solid #fff;
-                margin-right: 2px;
-            }
-            .wa-chat-status {
-                font-size: 0.95em;
-                color: #d1fae5;
-                font-style: italic;
-                margin-top: 2px;
-            }
-        .wa-topbar-icons {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-        .wa-topbar-icons span {
-            font-size: 1.3em;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-            .wa-main {
-                background: transparent;
-                min-height: 340px;
-                padding: 18px 10px 18px 10px;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                position: relative;
-                max-width: 430px;
-                margin: 0 auto;
-                margin-top: 70px;
-                max-height: calc(100vh - 90px);
-                overflow-y: auto;
-                scroll-behavior: smooth;
-            }
-            .wa-msg {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 8px;
-                opacity: 0;
-                transform: translateY(20px);
-                animation: chatIn 0.7s forwards;
-                margin-left: 14px;
-                margin-right: 14px;
-                margin-bottom: 8px;
-            }
-            .wa-msg:nth-child(1) { animation-delay: 0.2s; }
-            .wa-msg:nth-child(2) { animation-delay: 0.7s; }
-            .wa-msg:nth-child(3) { animation-delay: 1.2s; }
-            .wa-msg:nth-child(4) { animation-delay: 1.7s; }
-            .wa-msg:nth-child(5) { animation-delay: 2.2s; }
-            @keyframes chatIn {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .wa-bubble {
-                background: #fff;
-                border-radius: 18px 18px 18px 8px;
-                padding: 12px 18px 10px 18px;
-                font-size: 1em;
-                box-shadow: 0 2px 8px rgba(7,94,84,0.13);
-                max-width: 75%;
-                color: #222;
-                position: relative;
-                border: 1px solid #e0e7ee;
-                transition: box-shadow 0.2s;
-            }
-            .wa-bubble.me {
-                background: #dcf8c6;
-                border-radius: 18px 18px 8px 18px;
-                margin-left: auto;
-                color: #222;
-                border: 1px solid #b2f5ea;
-                box-shadow: 0 2px 8px rgba(37,211,102,0.13);
-            }
-            .wa-msg .wa-avatar {
-                align-self: flex-start;
-                margin-top: 2px;
-                margin-right: 2px;
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                object-fit: cover;
-                box-shadow: 0 1px 4px rgba(7,94,84,0.10);
-            }
-        .wa-name {
-            font-size: 0.95em;
-            font-weight: 500;
-            color: #075e54;
-            margin-bottom: 2px;
-        }
-            .wa-time {
-                font-size: 0.85em;
-                color: #888;
-                margin-left: 6px;
-                margin-top: 2px;
-                display: inline-block;
-                text-align: right;
-                vertical-align: middle;
-            }
-            .wa-check {
-                font-size: 1em;
-                color: #34b7f1;
-                margin-left: 2px;
-                vertical-align: middle;
-            }
-            .wa-footer {
-                background: #fff;
-                color: #888;
-                text-align: center;
-                padding: 16px 8px 20px 8px;
-                font-size: 0.97em;
-                border-top: 1px solid #eee;
-                border-bottom-left-radius: 24px;
-                border-bottom-right-radius: 24px;
-                box-shadow: 0 -2px 8px rgba(7,94,84,0.04);
-            }
-        .wa-rsvp {
-            padding: 18px 16px;
-            text-align: center;
-            background: #f7fafc;
-        }
-        .rsvp-btn {
-            display: inline-block;
-            background: #25d366;
-            color: #fff;
-            padding: 14px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-top: 8px;
-            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
-            transition: background 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-        .rsvp-btn:hover {
-            background: #128c7e;
-        }
-        @media (max-width: 1200px) {
-            .wa-real-container {
-                max-width: 700px;
-            }
-            .wa-main {
-                max-width: 700px;
-            }
-        }
-        @media (max-width: 900px) {
-            .wa-real-container {
-                max-width: 98vw;
-                border-radius: 0;
-                margin: 0 auto;
-                min-height: 100vh;
-            }
-            .wa-topbar {
-                max-width: 98vw !important;
-                border-radius: 0 !important;
-            }
-            .wa-main {
-                max-width: 98vw !important;
-                padding: 10px 2px 10px 2px;
-                min-height: 180px;
-                gap: 8px;
-            }
-        }
-        @media (max-width: 600px) {
-            .wa-real-container {
-                max-width: 100vw;
-                border-radius: 0;
-                margin: 0;
-                min-height: 100vh;
-            }
-            .wa-topbar {
-                max-width: 100vw !important;
-                border-radius: 0 !important;
-            }
-            .wa-main {
-                max-width: 100vw !important;
-                padding: 6px 0 6px 0;
-                min-height: 120px;
-                gap: 6px;
-            }
-            .wa-avatar {
-                width: 28px;
-                height: 28px;
-            }
-            .wa-bubble, .wa-bubble.me {
-                font-size: 0.95em;
-                padding: 8px 10px;
-                max-width: 95vw;
-            }
-            .wa-rsvp {
-                padding: 8px 2px;
-            }
-            .wa-footer {
-                padding: 8px 2px;
-                font-size: 0.9em;
-            }
-        }
+        /* ================= BODY & CONTAINER ================= */
+body {
+    background: #ece5dd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.wa-bg {
+    background: #ece5dd;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+}
+
+.wa-real-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* ================= HEADER ================= */
+.wa-topbar {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(90deg, #075e54 80%, #128c7e 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    z-index: 10;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
+}
+
+.wa-back {
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.wa-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #25d366;
+}
+
+.wa-chat-title {
+    font-weight: 600;
+    font-size: 1.08em;
+    color: #fff;
+}
+
+.wa-chat-status {
+    font-size: 0.9em;
+    color: #d1fae5;
+    font-style: italic;
+}
+
+.wa-topbar-icons {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.wa-topbar-icons span {
+    font-size: 1.4em;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+/* ================= CHAT AREA ================= */
+.wa-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 10px 80px 10px;
+    background: transparent;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+/* Chat bubble */
+.wa-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: chatIn 0.7s forwards;
+}
+
+@keyframes chatIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wa-bubble {
+    background: #fff;
+    border-radius: 18px 18px 18px 8px;
+    padding: 10px 16px 18px 16px;
+    font-size: 1em;
+    max-width: 75%;
+    color: #222;
+    border: 1px solid #e0e7ee;
+    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
+    position: relative;
+}
+
+.wa-bubble.me {
+    background: #dcf8c6;
+    border-radius: 18px 18px 8px 18px;
+    margin-left: auto;
+    color: #222;
+    border: 1px solid #b2f5ea;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.13);
+    padding-bottom: 20px;
+}
+
+.wa-name {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #075e54;
+    margin-bottom: 2px;
+}
+
+/* ================= JAM & CEKLIS ================= */
+.wa-time {
+    position: absolute;
+    right: 10px;
+    bottom: 4px;
+    color: #667781;
+    font-size: 0.78em;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* Ceklis dua biru (WhatsApp 2025 style) */
+.wa-check {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('https://i.ibb.co/4Rbjr7G/whatsapp-blue-double-tick.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Ceklis abu-abu (belum dibaca) */
+.wa-check.grey {
+    background-image: url('https://i.ibb.co/8gSKrSR/whatsapp-grey-double-tick.png');
+}
+
+/* Satu centang (terkirim) */
+.wa-check.single {
+    background-image: url('https://i.ibb.co/ySQQGdP/whatsapp-single-tick-grey.png');
+}
+
+/* ================= INPUT AREA ================= */
+.wa-chat-input {
+    background: #f0f2f5;
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 20px 20px;
+}
+
+.wa-input-wrapper {
+    background: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 10px 6px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wa-input-wrapper input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1em;
+    color: #222;
+}
+
+.wa-input-wrapper button {
+    background: #25d366;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+}
+
+.wa-input-wrapper button:hover {
+    background: #128c7e;
+}
+
+/* ================= MEDIA QUERIES ================= */
+@media (max-width: 600px) {
+    .wa-real-container {
+        max-width: 100vw;
+        border-radius: 0;
+    }
+
+    .wa-main {
+        padding: 6px 6px 70px 6px;
+    }
+
+    .wa-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wa-bubble, .wa-bubble.me {
+        font-size: 0.95em;
+        padding: 8px 10px 20px 10px;
+        max-width: 90%;
+    }
+
+    .wa-input-wrapper input {
+        font-size: 0.95em;
+    }
+
+    .wa-input-wrapper button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .wa-real-container {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 901px) {
+    .wa-real-container {
+        max-width: 480px;
+    }
+}
+
+/* ================= ANIMATION ================= */
+.wa-msg.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
+    
     </style>
 
 </head>
 <body>
-        <div class="wa-bg" style="background:#ece5dd;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-        <!-- Group Invitation Screen -->
-                <div id="wa-group-invite" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#ece5dd;z-index:100;display:flex;align-items:center;justify-content:center;">
-                    <!-- Invite Card -->
-                <div style="background:#fff;border-radius:18px;box-shadow:0 4px 24px rgba(7,94,84,0.13);padding:38px 28px;max-width:340px;text-align:center;">
-                    <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
-                    <div style="font-size:1.2em;font-weight:600;color:#075e54;margin-bottom:6px;">Undangan Pernikahan</div>
-                    <div id="wa-greeting" style="color:#25d366;font-size:1em;margin-bottom:8px;"></div>
-                    <div style="color:#888;font-size:0.97em;margin-bottom:18px;">Klik tombol di bawah untuk melihat undangan pernikahan.</div>
-                    <button id="wa-join-btn" style="background:#25d366;color:#fff;border:none;padding:12px 38px;border-radius:8px;font-weight:600;cursor:pointer;font-size:1.08em;">Buka Undangan</button>
+    <div id="loading-screen" style="
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1em;
+        z-index: 9999;
+        transition: opacity .4s ease;
+    ">
+        <div>Memuat undangan...</div>
+    </div>
+
+    <div class="wa-bg" style="background:#ece5dd;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+    <!-- Group Invitation Screen -->
+    <div id="wa-group-invite" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#ece5dd;z-index:100;display:flex;align-items:center;justify-content:center;">
+        <!-- Invite Card -->
+        <div style="background:#fff;border-radius:18px;box-shadow:0 4px 24px rgba(7,94,84,0.13);padding:38px 28px;max-width:340px;text-align:center;">
+            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <div style="font-size:1.2em;font-weight:600;color:#075e54;margin-bottom:6px;">Undangan Pernikahan</div>
+            <div id="wa-greeting" style="color:#25d366;font-size:1em;margin-bottom:8px;"></div>
+            <div style="color:#888;font-size:0.97em;margin-bottom:18px;">Klik tombol di bawah untuk melihat undangan pernikahan.</div>
+            <button id="wa-join-btn" style="background:#25d366;color:#fff;border:none;padding:12px 38px;border-radius:8px;font-weight:600;cursor:pointer;font-size:1.08em;">Buka Undangan</button>
+        </div>
+    </div>
+    <div class="wa-real-container" style="display:none;">
+        <!-- WhatsApp Topbar (Modern 2025, Fixed) -->
+        <div class="wa-topbar">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="wa-back" title="Kembali" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x2190;</span>
+                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" class="wa-avatar" id="wa-header-avatar" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:2px solid #25d366;object-fit:cover;" />
+                <div style="display:flex;flex-direction:column;">
+                    <span style="font-weight:600;font-size:1.08em;">Grup Undangan Pernikahan Fadiel & Silva</span>
+                    <span id="wa-group-members" style="font-size:0.95em;color:#d1fae5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></span>
                 </div>
             </div>
-            <div class="wa-real-container" style="display:none;">
-                <!-- WhatsApp Topbar (Modern 2025, Fixed) -->
-                <div class="wa-topbar" style="position:fixed;top:0;left:0;width:100vw;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:8px 14px 8px 8px;background:#075e54;color:#fff;border-top-left-radius:24px;border-top-right-radius:24px;box-shadow:0 2px 8px rgba(7,94,84,0.10);">
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <span class="wa-back" title="Kembali" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x2190;</span>
-                        <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" class="wa-avatar" id="wa-header-avatar" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:2px solid #25d366;object-fit:cover;" />
-                        <div style="display:flex;flex-direction:column;">
-                            <span style="font-weight:600;font-size:1.08em;">Grup Undangan Pernikahan Fadiel & Silva</span>
-                            <span id="wa-group-members" style="font-size:0.95em;color:#d1fae5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></span>
-                        </div>
-                    </div>
-                    <div class="wa-topbar-icons" style="display:flex;gap:18px;align-items:center;">
-                        <span title="Call" id="wa-call-btn" style="display:inline-flex;align-items:center;">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C7.61 22 2 16.39 2 9.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" stroke="#fff" stroke-width="2"/></svg>
-                        </span>
-                        <span title="Video" id="wa-video-btn" style="display:inline-flex;align-items:center;">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 10.5V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3.5l4 4v-11l-4 4z" stroke="#fff" stroke-width="2"/></svg>
-                        </span>
-                        <span title="More" id="wa-more-btn" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x22EE;</span>
-                    </div>
-                </div>
-    <!-- Modal Profil -->
-    <div id="wa-modal-profile" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
-      <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-        <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
-        <div style="font-size:1.2em;font-weight:600;color:#075e54;">Fadiel & Silva</div>
-        <div style="color:#25d366;font-size:1em;margin-bottom:8px;">online</div>
-        <div style="color:#888;font-size:0.97em;">"Mengundang Anda ke hari bahagia kami."</div>
-        <button onclick="document.getElementById('wa-modal-profile').style.display='none'" style="margin-top:18px;background:#25d366;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
-      </div>
-    </div>
-    <!-- Modal Call -->
-    <div id="wa-modal-call" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
-      <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-        <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
-        <div style="font-size:1.1em;font-weight:600;color:#075e54;">Memanggil Fadiel & Silva...</div>
-        <audio id="wa-call-audio" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae7c2.mp3" autoplay loop></audio>
-        <button onclick="waCloseCall()" style="margin-top:18px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
-      </div>
-    </div>
-    <!-- Modal Video Call -->
-    <div id="wa-modal-video" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
-      <div style="background:#222;border-radius:18px;padding:0;max-width:340px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-        <video src="https://www.w3schools.com/html/mov_bbb.mp4" width="340" height="220" controls autoplay loop style="border-radius:18px 18px 0 0;"></video>
-        <div style="background:#fff;padding:16px 0;border-radius:0 0 18px 18px;">
-          <div style="font-size:1.1em;font-weight:600;color:#075e54;">Video Call dengan Fadiel & Silva</div>
-          <button onclick="document.getElementById('wa-modal-video').style.display='none'" style="margin-top:12px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
+            <div class="wa-topbar-icons" style="display:flex;gap:18px;align-items:center;">
+                <span title="Call" id="wa-call-btn" style="display:inline-flex;align-items:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C7.61 22 2 16.39 2 9.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" stroke="#fff" stroke-width="2"/></svg>
+                </span>
+                <span title="Video" id="wa-video-btn" style="display:inline-flex;align-items:center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 10.5V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3.5l4 4v-11l-4 4z" stroke="#fff" stroke-width="2"/></svg>
+                </span>
+                <span title="More" id="wa-more-btn" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x22EE;</span>
+            </div>
         </div>
-      </div>
-    </div>
         <!-- WhatsApp Chat Section -->
-        <div class="wa-main" style="margin-top:70px;max-height:calc(100vh - 90px);overflow-y:auto;scroll-behavior:smooth;">
+        <div class="wa-main">
             <!-- Group Join Notification (no avatar/icon) -->
             <div style="text-align:center;color:#888;font-size:0.97em;margin:12px 0;">tamu joined the group</div>
             <!-- Poster Attachment Bubble (WhatsApp style) -->
@@ -373,7 +354,7 @@
                             </div>
                         </div>
                         <div style="padding:0 18px 10px 18px;">
-                            <span class="wa-time">08.58 <span class="wa-check">&#10003;</span></span>
+                            <span class="wa-time">08.58 <span class="wa-check"></span></span>
                         </div>
                     </div>
                 </div>
@@ -388,7 +369,7 @@
                         <span style="color:#25d366;font-weight:600;">Menuju Hari Bahagia:</span><br>
                         <span id="wa-countdown" style="font-size:1.1em;font-weight:700;color:#25d366;display:block;margin:6px 0;"></span>
                         <span style="font-size:0.97em;color:#888;">Acara pernikahan Fadiel & Silva akan dimulai pada <b>25 Oktober 2025</b></span>
-                        <span class="wa-time">08.59 <span class="wa-check">&#10003;</span></span>
+                        <span class="wa-time">08.59 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
@@ -398,7 +379,7 @@
                 <div>
                     <div class="wa-bubble">
                         <div class="wa-name">Fadiel</div>
-                        Assalamualaikum semuanya! Dengan penuh bahagia, kami mengundang keluarga dan sahabat untuk hadir di acara pernikahan kami.<span class="wa-time">09.01 <span class="wa-check">&#10003;</span></span>
+                        Assalamualaikum semuanya! Dengan penuh bahagia, kami mengundang keluarga dan sahabat untuk hadir di acara pernikahan kami.<span class="wa-time">09.01 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
@@ -412,7 +393,7 @@
                         <b>Sabtu, 25 Oktober 2025</b><br>
                         Pukul <b>10.00 WIB - selesai</b><br>
                         Bertempat di <b>Gedung Serbaguna Bahagia</b><br>
-                        <span class="wa-time">09.02 <span class="wa-check">&#10003;</span></span>
+                        <span class="wa-time">09.02 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
@@ -432,12 +413,11 @@
                             Jl. Mawar No. 123, Jakarta<br>
                             <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank" style="color:#25d366;text-decoration:none;font-size:0.97em;">Buka di Google Maps</a><br>
                             <span style="font-size:0.9em;color:#888;">Lokasi dibagikan</span>
-                            <span class="wa-time" style="float:right;">09.03 <span class="wa-check">&#10003;</span></span>
+                            <span class="wa-time" style="float:right;">09.03 <span class="wa-check"></span></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Contact Bubble -->
             <!-- Donation Bubble -->
             <div class="wa-msg">
                 <img src="https://i.ibb.co/6WZb7Qp/groom.jpg" class="wa-avatar" alt="Fadiel" />
@@ -452,140 +432,286 @@
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=1234567890" alt="QRIS" style="width:90px; height:90px; border-radius:12px; box-shadow:0 2px 8px rgba(7,94,84,0.08); margin-bottom:8px;" />
                         </div>
                         <span style="font-size:0.95em; color:#888;">Terima kasih atas doa dan dukungan Anda.</span>
-                        <span class="wa-time">09.05 <span class="wa-check">&#10003;</span></span>
+                        <span class="wa-time">09.05 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
             <!-- Agreement Bubble -->
             <div class="wa-msg" style="padding-left:50px;">
-                <div style="width:100%;">
-                    <div class="wa-bubble me" style="margin-left:0;">
-                        <div class="wa-name">tamu</div>
-                        Siap hadir dan mendoakan semoga acaranya lancar dan penuh berkah! 🙏<span class="wa-time">09.06 <span class="wa-check">&#10003;</span></span>
-                    </div>
+                <div class="wa-bubble me">
+                    <div class="wa-name">tamu</div>
+                    Siap hadir dan mendoakan semoga acaranya lancar dan penuh berkah! 🙏<span class="wa-time">09.06 <span class="wa-check"></span></span>
                 </div>
             </div>
         </div>
-
-
+        <!-- Fixed Chat Input -->
+        <div class="wa-chat-input">
+            <div class="wa-input-wrapper">
+                <input type="text" id="wa-input-field" placeholder="Ketik pesan..." maxlength="500" />
+                <button id="wa-send-btn" title="Kirim">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
             </div>
-            <!-- Background pattern credit: https://www.transparenttextures.com/ -->
-                        <!-- Background Music (dummy CDN) -->
-                    <audio id="wa-bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop style="display:none;"></audio>
-                                <script>
-                                // Get guest name from URL parameter
-                                function getGuestName() {
-                                    var url = new URL(window.location.href);
-                                    var name = url.searchParams.get('nama') || 'tamu';
-                                    // Capitalize first letter
-                                    return name.charAt(0).toUpperCase() + name.slice(1);
-                                }
+        </div>
+    </div>
+    <!-- Modal Profil -->
+    <div id="wa-modal-profile" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
+            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <div style="font-size:1.2em;font-weight:600;color:#075e54;">Fadiel & Silva</div>
+            <div style="color:#25d366;font-size:1em;margin-bottom:8px;">online</div>
+            <div style="color:#888;font-size:0.97em;">"Mengundang Anda ke hari bahagia kami."</div>
+            <button onclick="document.getElementById('wa-modal-profile').style.display='none'" style="margin-top:18px;background:#25d366;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
+        </div>
+    </div>
+    <!-- Modal Call -->
+    <div id="wa-modal-call" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
+            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <div style="font-size:1.1em;font-weight:600;color:#075e54;">Memanggil Fadiel & Silva...</div>
+            <audio id="wa-call-audio" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae7c2.mp3" autoplay loop></audio>
+            <button onclick="waCloseCall()" style="margin-top:18px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
+        </div>
+    </div>
+    <!-- Modal Video Call -->
+    <div id="wa-modal-video" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
+        <div style="background:#222;border-radius:18px;padding:0;max-width:340px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4" width="340" height="220" controls autoplay loop style="border-radius:18px 18px 0 0;"></video>
+            <div style="background:#fff;padding:16px 0;border-radius:0 0 18px 18px;">
+            <div style="font-size:1.1em;font-weight:600;color:#075e54;">Video Call dengan Fadiel & Silva</div>
+            <button onclick="document.getElementById('wa-modal-video').style.display='none'" style="margin-top:12px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
+            </div>
+        </div>
+    </div>
+    <!-- Background Music (dummy CDN) -->
+    <audio id="wa-bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop style="display:none;"></audio>
+    <script>
+        // Get guest name from URL parameter
+        function getGuestName() {
+            var url = new URL(window.location.href);
+            var name = url.searchParams.get('nama') || 'tamu';
+            // Capitalize first letter
+            return name.charAt(0).toUpperCase() + name.slice(1);
+        }
 
-                                // Set greeting and tamu's name
-                                var guestName = getGuestName();
-                                document.getElementById('wa-greeting').textContent = `Halo ${guestName}, Anda diundang ke acara pernikahan Fadiel & Silva!`;
-                                // Set group members in header
-                                var groupMembers = ['Fadiel', 'Silva', guestName];
-                                document.getElementById('wa-group-members').textContent = groupMembers.join(', ');
+        // Set greeting and tamu's name
+        var guestName = getGuestName();
+        document.getElementById('wa-greeting').textContent = `Halo ${guestName}, Anda diundang ke acara pernikahan Fadiel & Silva!`;
+        // Set group members in header
+        var groupMembers = ['Fadiel', 'Silva', guestName];
+        document.getElementById('wa-group-members').textContent = groupMembers.join(', ');
 
-                                // Countdown logic
-                                function updateCountdown() {
-                                    var eventDate = new Date('2025-10-25T10:00:00+07:00');
-                                    var now = new Date();
-                                    var diff = eventDate - now;
-                                    if (diff <= 0) {
-                                        document.getElementById('wa-countdown').textContent = 'Acara telah dimulai!';
-                                        return;
-                                    }
-                                    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                                    var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                                    var minutes = Math.floor((diff / (1000 * 60)) % 60);
-                                    var seconds = Math.floor((diff / 1000) % 60);
-                                    document.getElementById('wa-countdown').textContent = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
-                                }
-                                setInterval(updateCountdown, 1000);
-                                updateCountdown();
+        // Countdown logic
+        function updateCountdown() {
+            var eventDate = new Date('2025-10-25T10:00:00+07:00');
+            var now = new Date();
+            var diff = eventDate - now;
+            if (diff <= 0) {
+                document.getElementById('wa-countdown').textContent = 'Acara telah dimulai!';
+                return;
+            }
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            var minutes = Math.floor((diff / (1000 * 60)) % 60);
+            var seconds = Math.floor((diff / 1000) % 60);
+            document.getElementById('wa-countdown').textContent = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-                                // Show chat after joining group, then play music
-                                document.getElementById('wa-join-btn').onclick = function() {
-                                    document.getElementById('wa-group-invite').style.display = 'none';
-                                    document.querySelector('.wa-real-container').style.display = '';
-                                    var bgMusic = document.getElementById('wa-bg-music');
-                                    if(bgMusic) {
-                                        bgMusic.volume = 0.5;
-                                        bgMusic.play();
-                                    }
-                                    // Change tamu's name in chat bubble
-                                    var tamuBubble = document.querySelector('.wa-bubble.me .wa-name');
-                                    if(tamuBubble) tamuBubble.textContent = guestName;
-                                    // Change join notification
-                                    var joinNotif = document.querySelector('.wa-main > div[style*="text-align:center"]');
-                                    if(joinNotif) joinNotif.textContent = `${guestName} joined the group`;
-                                };
-                                // Back button shows landing page again
-                                document.querySelector('.wa-back').onclick = function() {
-                                    var invite = document.getElementById('wa-group-invite');
-                                    invite.style.display = '';
-                                    invite.style.position = 'fixed';
-                                    invite.style.top = '0';
-                                    invite.style.left = '0';
-                                    invite.style.width = '100vw';
-                                    invite.style.height = '100vh';
-                                    invite.style.background = '#ece5dd';
-                                    invite.style.zIndex = '100';
-                                    invite.style.display = 'flex';
-                                    invite.style.alignItems = 'center';
-                                    invite.style.justifyContent = 'center';
-                                    // Center the child card
-                                    var card = invite.querySelector('div[style*="max-width:340px"]');
-                                    if(card) {
-                                        card.style.margin = '0 auto';
-                                    }
-                                    document.querySelector('.wa-real-container').style.display = 'none';
-                                    var bgMusic = document.getElementById('wa-bg-music');
-                                    if(bgMusic) {
-                                        bgMusic.pause();
-                                        bgMusic.currentTime = 0;
-                                    }
-                                    window.scrollTo({top: 0, behavior: 'auto'});
-                                };
-                                // Avatar modal
-                                document.getElementById('wa-header-avatar').onclick = function() {
-                                    document.getElementById('wa-modal-profile').style.display = 'flex';
-                                };
-                                // Call modal
-                                document.getElementById('wa-call-btn').onclick = function() {
-                                    document.getElementById('wa-modal-call').style.display = 'flex';
-                                    setTimeout(function(){
-                                        var audio = document.getElementById('wa-call-audio');
-                                        if(audio) audio.play();
-                                    }, 300);
-                                };
-                                function waCloseCall() {
-                                    document.getElementById('wa-modal-call').style.display = 'none';
-                                    var audio = document.getElementById('wa-call-audio');
-                                    if(audio) {
-                                        audio.pause();
-                                        audio.currentTime = 0;
-                                    }
-                                }
-                                // Video modal
-                                document.getElementById('wa-video-btn').onclick = function() {
-                                    document.getElementById('wa-modal-video').style.display = 'flex';
-                                    var video = document.querySelector('#wa-modal-video video');
-                                    if(video) {
-                                        video.currentTime = 0;
-                                        video.play();
-                                    }
-                                };
-                                // Close video modal and stop video
-                                document.querySelector('#wa-modal-video button').onclick = function() {
-                                    document.getElementById('wa-modal-video').style.display = 'none';
-                                    var video = document.querySelector('#wa-modal-video video');
-                                    if(video) {
-                                        video.pause();
-                                        video.currentTime = 0;
-                                    }
-                                };
-                                </script>
-                                </html>
+        // Show chat after joining group, then play music
+        document.getElementById('wa-join-btn').onclick = function() {
+            document.getElementById('wa-group-invite').style.display = 'none';
+            document.querySelector('.wa-real-container').style.display = '';
+            var bgMusic = document.getElementById('wa-bg-music');
+            if(bgMusic) {
+                bgMusic.volume = 0.5;
+                bgMusic.play();
+            }
+            // Change tamu's name in chat bubble
+            var tamuBubble = document.querySelector('.wa-bubble.me .wa-name');
+            if(tamuBubble) tamuBubble.textContent = guestName;
+            // Change join notification
+            var joinNotif = document.querySelector('.wa-main > div[style*="text-align:center"]');
+            if(joinNotif) joinNotif.textContent = `${guestName} joined the group`;
+        };
+        // Back button shows landing page again
+        document.querySelector('.wa-back').onclick = function() {
+            var invite = document.getElementById('wa-group-invite');
+            invite.style.display = '';
+            invite.style.position = 'fixed';
+            invite.style.top = '0';
+            invite.style.left = '0';
+            invite.style.width = '100vw';
+            invite.style.height = '100vh';
+            invite.style.background = '#ece5dd';
+            invite.style.zIndex = '100';
+            invite.style.display = 'flex';
+            invite.style.alignItems = 'center';
+            invite.style.justifyContent = 'center';
+            // Center the child card
+            var card = invite.querySelector('div[style*="max-width:340px"]');
+            if(card) {
+                card.style.margin = '0 auto';
+            }
+            document.querySelector('.wa-real-container').style.display = 'none';
+            var bgMusic = document.getElementById('wa-bg-music');
+            if(bgMusic) {
+                bgMusic.pause();
+                bgMusic.currentTime = 0;
+            }
+            window.scrollTo({top: 0, behavior: 'auto'});
+        };
+        // Avatar modal
+        document.getElementById('wa-header-avatar').onclick = function() {
+            document.getElementById('wa-modal-profile').style.display = 'flex';
+        };
+        // Call modal
+        document.getElementById('wa-call-btn').onclick = function() {
+            document.getElementById('wa-modal-call').style.display = 'flex';
+            setTimeout(function(){
+                var audio = document.getElementById('wa-call-audio');
+                if(audio) audio.play();
+            }, 300);
+        };
+        function waCloseCall() {
+            document.getElementById('wa-modal-call').style.display = 'none';
+            var audio = document.getElementById('wa-call-audio');
+            if(audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+        // Video modal
+        document.getElementById('wa-video-btn').onclick = function() {
+            document.getElementById('wa-modal-video').style.display = 'flex';
+            var video = document.querySelector('#wa-modal-video video');
+            if(video) {
+                video.currentTime = 0;
+                video.play();
+            }
+        };
+        // Close video modal and stop video
+        document.querySelector('#wa-modal-video button').onclick = function() {
+            document.getElementById('wa-modal-video').style.display = 'none';
+            var video = document.querySelector('#wa-modal-video video');
+            if(video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        };
+    
+        // === Chat Send Feature ===
+        const sendBtn = document.getElementById('wa-send-btn');
+        const inputField = document.getElementById('wa-input-field');
+        const chatContainer = document.querySelector('.wa-main');
+
+        function addUserMessage(text) {
+            if (!text.trim()) return;
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'wa-msg';
+            msgDiv.style.paddingLeft = '50px';
+            msgDiv.innerHTML = `
+                <div class="wa-bubble me">
+                    <div class="wa-name">${guestName}</div>
+                    ${text}
+                    <span class="wa-time">${new Date().getHours().toString().padStart(2, '0')}.${new Date().getMinutes().toString().padStart(2, '0')} <span class="wa-check"></span></span>
+                </div>
+            `;
+            chatContainer.appendChild(msgDiv);
+
+            // jika observer tersedia, observe pesan baru sehingga akan animasi saat masuk view
+            if (window.waMsgObserver) {
+                window.waMsgObserver.observe(msgDiv);
+            } else {
+                // fallback: buat langsung visible
+                msgDiv.classList.add('visible');
+            }
+
+            // scroll ke bawah (sedikit delay agar render selesai)
+            setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 100);
+
+            inputField.value = '';
+        }
+        sendBtn.onclick = function() {
+            addUserMessage(inputField.value);
+        };
+
+        // Tekan Enter untuk kirim
+        inputField.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addUserMessage(inputField.value);
+            }
+        });
+
+        (function(){
+            const chatRoot = document.querySelector('.wa-main'); // scroll container
+            if (!chatRoot) return;
+
+            // ambil semua message yang sudah ada
+            const messages = Array.from(chatRoot.querySelectorAll('.wa-msg'));
+
+            const observerOptions = {
+                root: chatRoot,                 // gunakan container yang discroll
+                rootMargin: '0px 0px -8% 0px',  // tweak: trigger sedikit sebelum elemen benar2 penuh terlihat
+                threshold: 0.06                 // kecil cukup: saat 6% elemen terlihat
+            };
+
+            const io = new IntersectionObserver((entries) => {
+                // filter yang baru masuk dan belum visible, lalu sort dari atas ke bawah
+                const entering = entries
+                .filter(e => e.isIntersecting && !e.target.classList.contains('visible'))
+                .sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+                entering.forEach((entry, idx) => {
+                    const el = entry.target;
+                    const alreadyInView = entry.intersectionRatio > 0.8; // hampir penuh di viewport
+                    const baseDelay = alreadyInView ? (idx * 120) + 400 : idx * 80; 
+                    // kalau sudah kelihatan saat awal, tunda sedikit biar tetap animasi
+
+                    el.style.setProperty('--delay', `${baseDelay}ms`);
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                        io.unobserve(el);
+                    }, baseDelay + 20);
+                });
+
+            }, observerOptions);
+
+            // observe semua pesan awal
+            messages.forEach(m => io.observe(m));
+
+            // expose observer supaya addUserMessage bisa mendaftarkan pesan baru
+            window.waMsgObserver = io;
+            })();
+
+        window.addEventListener('load', () => {
+            // Semua gambar, iframe, dan resource sudah dimuat
+            const loading = document.getElementById('loading-screen');
+            const openBtn = document.getElementById('open-invitation-btn');
+
+            // Hilangkan layar loading dengan fade out
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                loading.style.display = 'none';
+
+                // Tampilkan tombol "Buka Undangan"
+                if (openBtn) {
+                openBtn.classList.add('ready');
+                }
+
+                // Optional: trigger animasi bubble pertama setelah sedikit delay
+                const firstMsgs = document.querySelectorAll('.wa-msg');
+                firstMsgs.forEach((msg, i) => {
+                setTimeout(() => msg.classList.add('visible'), i * 100 + 300);
+                });
+            }, 600);
+        });
+    
+    </script>
+</body>
+</html>
