@@ -308,7 +308,7 @@ body {
                 <span class="wa-back" title="Kembali" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x2190;</span>
                 <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" class="wa-avatar" id="wa-header-avatar" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:2px solid #25d366;object-fit:cover;" />
                 <div style="display:flex;flex-direction:column;">
-                    <span style="font-weight:600;font-size:1.08em;">Grup Undangan Pernikahan Fadiel & Silva 2</span>
+                    <span style="font-weight:600;font-size:1.08em;">Grup Undangan Pernikahan Fadiel & Silva 3</span>
                     <span id="wa-group-members" style="font-size:0.95em;color:#d1fae5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></span>
                 </div>
             </div>
@@ -702,19 +702,43 @@ body {
                 });
             }, 600);
         });
-
-        function adjustFooter() {
-            const footer = document.querySelector('.footer-sticky');
-            const vh = window.innerHeight;
-            document.body.style.minHeight = vh + 'px';
-            footer.style.bottom = '0px';
-        }
-
-        window.addEventListener('load', adjustFooter);
-        window.addEventListener('resize', adjustFooter);
-        window.addEventListener('scroll', adjustFooter);
     
     </script>
+
+    <script>
+        function fixViewportHeight() {
+        // Hitung tinggi viewport sebenarnya
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        // Tambah CSS global yang override semua inline 100vh
+        if (!document.getElementById('vh-fix-style')) {
+            const style = document.createElement('style');
+            style.id = 'vh-fix-style';
+            style.innerHTML = `
+            [style*="100vh"] {
+                height: calc(var(--vh, 1vh) * 100) !important;
+            }
+            html, body {
+                height: calc(var(--vh, 1vh) * 100);
+                overflow: hidden;
+            }
+            `;
+            document.head.appendChild(style);
+        }
+        }
+
+        // Jalankan saat load dan resize
+        fixViewportHeight();
+        window.addEventListener('resize', fixViewportHeight);
+        window.addEventListener('orientationchange', fixViewportHeight);
+
+        // Trik auto-scroll biar toolbar Chrome langsung collapse
+        window.addEventListener('load', () => {
+        setTimeout(() => window.scrollTo(0, 1), 80);
+        setTimeout(() => window.scrollTo(0, 1), 600);
+        });
+</script>
+
 </body>
 </html>
-
