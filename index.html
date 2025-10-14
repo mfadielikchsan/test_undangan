@@ -702,6 +702,17 @@ body {
                 });
             }, 600);
         });
+
+        function adjustFooter() {
+            const footer = document.querySelector('.footer-sticky');
+            const vh = window.innerHeight;
+            document.body.style.minHeight = vh + 'px';
+            footer.style.bottom = '0px';
+        }
+
+        window.addEventListener('load', adjustFooter);
+        window.addEventListener('resize', adjustFooter);
+        window.addEventListener('scroll', adjustFooter);
     
     </script>
 </body>
