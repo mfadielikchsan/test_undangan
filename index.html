@@ -4,273 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitation Fadiel</title>
-    <style>
-        /* ================= BODY & CONTAINER ================= */
-body {
-    background: #ece5dd;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-.wa-bg {
-    background: #ece5dd;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: -1;
-}
-
-.wa-real-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 430px;
-    height: 100vh;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative;
-}
-
-/* ================= HEADER ================= */
-.wa-topbar {
-    position: sticky;
-    top: 0;
-    background: linear-gradient(90deg, #075e54 80%, #128c7e 100%);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 14px;
-    z-index: 10;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
-}
-
-.wa-back {
-    font-size: 1.5em;
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-.wa-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #25d366;
-}
-
-.wa-chat-title {
-    font-weight: 600;
-    font-size: 1.08em;
-    color: #fff;
-}
-
-.wa-chat-status {
-    font-size: 0.9em;
-    color: #d1fae5;
-    font-style: italic;
-}
-
-.wa-topbar-icons {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-}
-
-.wa-topbar-icons span {
-    font-size: 1.4em;
-    cursor: pointer;
-    opacity: 0.85;
-}
-
-/* ================= CHAT AREA ================= */
-.wa-main {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px 10px 80px 10px;
-    background: transparent;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-}
-
-/* Chat bubble */
-.wa-msg {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 6px 14px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: chatIn 0.7s forwards;
-}
-
-@keyframes chatIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.wa-bubble {
-    background: #fff;
-    border-radius: 18px 18px 18px 8px;
-    padding: 10px 16px 18px 16px;
-    font-size: 1em;
-    max-width: 75%;
-    color: #222;
-    border: 1px solid #e0e7ee;
-    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
-    position: relative;
-}
-
-.wa-bubble.me {
-    background: #dcf8c6;
-    border-radius: 18px 18px 8px 18px;
-    margin-left: auto;
-    color: #222;
-    border: 1px solid #b2f5ea;
-    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.13);
-    padding-bottom: 20px;
-}
-
-.wa-name {
-    font-size: 0.95em;
-    font-weight: 500;
-    color: #075e54;
-    margin-bottom: 2px;
-}
-
-/* ================= JAM & CEKLIS ================= */
-.wa-time {
-    position: absolute;
-    right: 10px;
-    bottom: 4px;
-    color: #667781;
-    font-size: 0.78em;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-}
-
-/* Ceklis dua biru (WhatsApp 2025 style) */
-.wa-check {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    background-image: url('ASSET/checklist.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-
-/* ================= INPUT AREA ================= */
-.wa-chat-input {
-    background: #f0f2f5;
-    padding: 8px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ddd;
-    border-radius: 0 0 20px 20px;
-}
-
-.wa-input-wrapper {
-    background: #fff;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 6px 10px 6px 16px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-.wa-input-wrapper input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 1em;
-    color: #222;
-}
-
-.wa-input-wrapper button {
-    background: #25d366;
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-    box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
-}
-
-.wa-input-wrapper button:hover {
-    background: #128c7e;
-}
-
-/* ================= MEDIA QUERIES ================= */
-@media (max-width: 600px) {
-    .wa-real-container {
-        max-width: 100vw;
-        border-radius: 0;
-    }
-
-    .wa-main {
-        padding: 6px 6px 70px 6px;
-    }
-
-    .wa-avatar {
-        width: 30px;
-        height: 30px;
-    }
-
-    .wa-bubble, .wa-bubble.me {
-        font-size: 0.95em;
-        padding: 8px 10px 20px 10px;
-        max-width: 90%;
-    }
-
-    .wa-input-wrapper input {
-        font-size: 0.95em;
-    }
-
-    .wa-input-wrapper button {
-        width: 38px;
-        height: 38px;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 900px) {
-    .wa-real-container {
-        max-width: 600px;
-    }
-}
-
-@media (min-width: 901px) {
-    .wa-real-container {
-        max-width: 480px;
-    }
-}
-
-/* ================= ANIMATION ================= */
-.wa-msg.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.4s ease;
-}
-    
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="loading-screen" style="
@@ -289,24 +23,25 @@ body {
         <div>Memuat undangan...</div>
     </div>
 
-    <div class="wa-bg" style="background:#ece5dd;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+    <div class="wa-bg"></div>
     <!-- Group Invitation Screen -->
-    <div id="wa-group-invite" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#ece5dd;z-index:100;display:flex;align-items:center;justify-content:center;">
+    <div id="wa-group-invite">
         <!-- Invite Card -->
         <div style="background:#fff;border-radius:18px;box-shadow:0 4px 24px rgba(7,94,84,0.13);padding:38px 28px;max-width:340px;text-align:center;">
-            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <img src="ASSET/icongrup.png" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
             <div style="font-size:1.2em;font-weight:600;color:#075e54;margin-bottom:6px;">Undangan Pernikahan</div>
             <div id="wa-greeting" style="color:#25d366;font-size:1em;margin-bottom:8px;"></div>
             <div style="color:#888;font-size:0.97em;margin-bottom:18px;">Klik tombol di bawah untuk melihat undangan pernikahan.</div>
             <button id="wa-join-btn" style="background:#25d366;color:#fff;border:none;padding:12px 38px;border-radius:8px;font-weight:600;cursor:pointer;font-size:1.08em;">Buka Undangan</button>
         </div>
     </div>
-    <div class="wa-real-container" style="display:none;">
+    <!-- WA Container -->
+    <div class="wa-real-container">
         <!-- WhatsApp Topbar (Modern 2025, Fixed) -->
         <div class="wa-topbar">
             <div style="display:flex;align-items:center;gap:10px;">
                 <span class="wa-back" title="Kembali" style="font-size:1.5em;cursor:pointer;opacity:0.8;">&#x2190;</span>
-                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" class="wa-avatar" id="wa-header-avatar" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:2px solid #25d366;object-fit:cover;" />
+                <img src="ASSET/icongrup.png" alt="Fadiel & Silva" class="wa-avatar" id="wa-header-avatar" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:2px solid #25d366;object-fit:cover;" />
                 <div style="display:flex;flex-direction:column;">
                     <span style="font-weight:600;font-size:1.08em;">Grup Undangan Pernikahan Fadiel & Silva</span>
                     <span id="wa-group-members" style="font-size:0.95em;color:#d1fae5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></span>
@@ -328,31 +63,20 @@ body {
             <div style="text-align:center;color:#888;font-size:0.97em;margin:12px 0;">tamu joined the group</div>
             <!-- Poster Attachment Bubble (WhatsApp style) -->
             <div class="wa-msg">
-                <img src="https://i.ibb.co/6WZb7Qp/groom.jpg" class="wa-avatar" alt="Fadiel" />
+                <img src="ASSET/ava1.png" class="wa-avatar" alt="Fadiel" />
                 <div>
-                    <div class="wa-bubble" style="background:#fff; padding:0; overflow:hidden;">
-                        <div style="padding:12px 18px 0 18px;">
-                            <div class="wa-name">Fadiel</div>
-                        </div>
+                    <div class="wa-bubble">
+                        <div class="wa-name">Fadiel</div>
                         <div style="width:100%;background:#f7fafc;padding:0 0 12px 0;display:flex;flex-direction:column;align-items:center;">
-                            <img src="https://i.ibb.co/2NfQ7Qp/poster-dummy.jpg" alt="Poster Undangan" style="width:100%;max-width:260px;height:auto;border-radius:14px;box-shadow:0 2px 8px rgba(37,211,102,0.10);object-fit:cover;margin:12px 0 8px 0;" />
-                            <div style="text-align:center;padding:0 12px;">
-                                <span style="font-size:1.15em;font-weight:600;color:#075e54;">Fadiel S.T</span><br>
-                                <span style="font-size:0.98em;color:#222;">Putra dari Bapak Dummy & Ibu Dummy</span><br>
-                                <span style="font-size:1.15em;font-weight:600;color:#075e54;">Silva</span><br>
-                                <span style="font-size:0.98em;color:#222;">Putri pertama Bapak Dummy & Ibu Dummy</span><br>
-                                <span style="font-size:1.05em;color:#25d366;font-weight:500;">Undangan Pernikahan</span>
-                            </div>
+                            <img src="ASSET/icongrup.png" alt="Poster Undangan" style="width:100%;max-width:260px;height:auto;border-radius:14px;box-shadow:0 2px 8px rgba(37,211,102,0.10);object-fit:cover;margin:12px 0 8px 0;" />
                         </div>
-                        <div style="padding:0 18px 10px 18px;">
-                            <span class="wa-time">08.58 <span class="wa-check"></span></span>
-                        </div>
+                        <span class="wa-time">09.01 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
             <!-- Countdown Bubble -->
             <div class="wa-msg">
-                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" class="wa-avatar" alt="Silva" />
+                <img src="ASSET/ava2.png" class="wa-avatar" alt="Silva" />
                 <div>
                     <div class="wa-bubble">
                         <div class="wa-name">Silva</div>
@@ -366,7 +90,7 @@ body {
             </div>
             <!-- Invitation Bubble -->
             <div class="wa-msg">
-                <img src="https://i.ibb.co/6WZb7Qp/groom.jpg" class="wa-avatar" alt="Fadiel" />
+                <img src="ASSET/ava1.png" class="wa-avatar" alt="Fadiel" />
                 <div>
                     <div class="wa-bubble">
                         <div class="wa-name">Fadiel</div>
@@ -374,44 +98,28 @@ body {
                     </div>
                 </div>
             </div>
-            <!-- Event Details Bubble -->
+            <!-- Location Share Bubble -->
             <div class="wa-msg">
-                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" class="wa-avatar" alt="Silva" />
+                <img src="ASSET/ava2.png" class="wa-avatar" alt="Silva" />
                 <div>
                     <div class="wa-bubble">
                         <div class="wa-name">Silva</div>
-                        Acara akan dilaksanakan pada:<br>
-                        <b>Sabtu, 25 Oktober 2025</b><br>
-                        Pukul <b>10.00 WIB - selesai</b><br>
-                        Bertempat di <b>Gedung Serbaguna Bahagia</b><br>
-                        <span class="wa-time">09.02 <span class="wa-check"></span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- Location Share Bubble (WhatsApp style, interactive) -->
-            <div class="wa-msg">
-                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" class="wa-avatar" alt="Silva" />
-                <div>
-                    <div class="wa-bubble" style="background:#fff;padding:0;overflow:hidden;">
-                        <div style="padding:12px 18px 0 18px;">
-                            <div class="wa-name">Silva</div>
-                        </div>
                         <div style="width:100%;height:180px;">
                             <iframe src="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta&output=embed" width="100%" height="180" frameborder="0" style="border:0;display:block;" allowfullscreen=""></iframe>
                         </div>
-                        <div style="padding:10px 18px 8px 18px;">
+                        <div style="padding:8px 10px 1px 1px;">
                             <b>Gedung Serbaguna Bahagia</b><br>
                             Jl. Mawar No. 123, Jakarta<br>
                             <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank" style="color:#25d366;text-decoration:none;font-size:0.97em;">Buka di Google Maps</a><br>
                             <span style="font-size:0.9em;color:#888;">Lokasi dibagikan</span>
-                            <span class="wa-time" style="float:right;">09.03 <span class="wa-check"></span></span>
                         </div>
+                        <span class="wa-time" style="float:right;">09.03 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
             <!-- Donation Bubble -->
             <div class="wa-msg">
-                <img src="https://i.ibb.co/6WZb7Qp/groom.jpg" class="wa-avatar" alt="Fadiel" />
+                <img src="ASSET/ava1.png" class="wa-avatar" alt="Fadiel" />
                 <div>
                     <div class="wa-bubble">
                         <div class="wa-name">Fadiel</div>
@@ -420,18 +128,21 @@ body {
                             <div style="font-size:0.98em;color:#075e54;font-weight:500;margin-bottom:4px;">Rekening BCA</div>
                             <div style="font-size:1.15em;font-weight:700;color:#222;margin-bottom:2px;">1234567890</div>
                             <div style="font-size:0.97em;color:#888;margin-bottom:6px;">a.n. Fadiel & Silva</div>
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=1234567890" alt="QRIS" style="width:90px; height:90px; border-radius:12px; box-shadow:0 2px 8px rgba(7,94,84,0.08); margin-bottom:8px;" />
+                            <img src="ASSET/qr.png" alt="QRIS" style="width:90px; height:90px; border-radius:12px; box-shadow:0 2px 8px rgba(7,94,84,0.08); margin-bottom:8px;" />
                         </div>
                         <span style="font-size:0.95em; color:#888;">Terima kasih atas doa dan dukungan Anda.</span>
                         <span class="wa-time">09.05 <span class="wa-check"></span></span>
                     </div>
                 </div>
             </div>
-            <!-- Agreement Bubble -->
-            <div class="wa-msg" style="padding-left:50px;">
-                <div class="wa-bubble me">
-                    <div class="wa-name">tamu</div>
-                    Siap hadir dan mendoakan semoga acaranya lancar dan penuh berkah! 🙏<span class="wa-time">09.06 <span class="wa-check"></span></span>
+            <!-- Invitation Bubble -->
+            <div class="wa-msg">
+                <img src="ASSET/ava2.png" class="wa-avatar" alt="Silva" />
+                <div>
+                    <div class="wa-bubble">
+                        <div class="wa-name">Silva</div>
+                        Jika ada pertanyaan, silakan ketik di bawah ya 🌿<span class="wa-time">09.06 <span class="wa-check"></span></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -450,7 +161,7 @@ body {
     <!-- Modal Profil -->
     <div id="wa-modal-profile" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
         <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <img src="ASSET/icongrup.png" alt="Fadiel & Silva" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
             <div style="font-size:1.2em;font-weight:600;color:#075e54;">Fadiel & Silva</div>
             <div style="color:#25d366;font-size:1em;margin-bottom:8px;">online</div>
             <div style="color:#888;font-size:0.97em;">"Mengundang Anda ke hari bahagia kami."</div>
@@ -460,356 +171,26 @@ body {
     <!-- Modal Call -->
     <div id="wa-modal-call" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
         <div style="background:#fff;border-radius:18px;padding:32px 24px;max-width:320px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-            <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
+            <img src="ASSET/icongrup.png" alt="Fadiel & Silva" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid #25d366;box-shadow:0 2px 8px rgba(37,211,102,0.13);margin-bottom:12px;" />
             <div style="font-size:1.1em;font-weight:600;color:#075e54;">Memanggil Fadiel & Silva...</div>
-            <audio id="wa-call-audio" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae7c2.mp3" autoplay loop></audio>
+            <audio id="wa-call-audio" src="ASSET/bgaudio.mp3" autoplay loop></audio>
             <button onclick="waCloseCall()" style="margin-top:18px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
         </div>
     </div>
     <!-- Modal Video Call -->
     <div id="wa-modal-video" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:99;align-items:center;justify-content:center;">
         <div style="background:#222;border-radius:18px;padding:0;max-width:340px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.13);position:relative;">
-            <video src="https://www.w3schools.com/html/mov_bbb.mp4" width="340" height="220" controls autoplay loop style="border-radius:18px 18px 0 0;"></video>
+            <video src="ASSET/vid.mp4" width="340" height="220" controls autoplay loop style="border-radius:18px 18px 0 0;"></video>
             <div style="background:#fff;padding:16px 0;border-radius:0 0 18px 18px;">
             <div style="font-size:1.1em;font-weight:600;color:#075e54;">Video Call dengan Fadiel & Silva</div>
             <button onclick="document.getElementById('wa-modal-video').style.display='none'" style="margin-top:12px;background:#d32f2f;color:#fff;border:none;padding:8px 24px;border-radius:8px;font-weight:600;cursor:pointer;">Tutup</button>
             </div>
         </div>
     </div>
+
     <!-- Background Music (dummy CDN) -->
-    <audio id="wa-bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop style="display:none;"></audio>
-    <script>
-        // Get guest name from URL parameter
-        function getGuestName() {
-            var url = new URL(window.location.href);
-            var name = url.searchParams.get('nama') || 'tamu';
-            // Capitalize first letter
-            return name.charAt(0).toUpperCase() + name.slice(1);
-        }
-
-        // Set greeting and tamu's name
-        var guestName = getGuestName();
-        document.getElementById('wa-greeting').textContent = `Halo ${guestName}, Anda diundang ke acara pernikahan Fadiel & Silva!`;
-        // Set group members in header
-        var groupMembers = ['Fadiel', 'Silva', guestName];
-        document.getElementById('wa-group-members').textContent = groupMembers.join(', ');
-
-        // Countdown logic
-        function updateCountdown() {
-            var eventDate = new Date('2025-10-25T10:00:00+07:00');
-            var now = new Date();
-            var diff = eventDate - now;
-            if (diff <= 0) {
-                document.getElementById('wa-countdown').textContent = 'Acara telah dimulai!';
-                return;
-            }
-            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            var minutes = Math.floor((diff / (1000 * 60)) % 60);
-            var seconds = Math.floor((diff / 1000) % 60);
-            document.getElementById('wa-countdown').textContent = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Show chat after joining group, then play music
-        document.getElementById('wa-join-btn').onclick = function() {
-            document.getElementById('wa-group-invite').style.display = 'none';
-            document.querySelector('.wa-real-container').style.display = '';
-            var bgMusic = document.getElementById('wa-bg-music');
-            if(bgMusic) {
-                bgMusic.volume = 0.5;
-                bgMusic.play();
-            }
-            // Change tamu's name in chat bubble
-            var tamuBubble = document.querySelector('.wa-bubble.me .wa-name');
-            if(tamuBubble) tamuBubble.textContent = guestName;
-            // Change join notification
-            var joinNotif = document.querySelector('.wa-main > div[style*="text-align:center"]');
-            if(joinNotif) joinNotif.textContent = `${guestName} joined the group`;
-        };
-        // Back button shows landing page again
-        document.querySelector('.wa-back').onclick = function() {
-            var invite = document.getElementById('wa-group-invite');
-            invite.style.display = '';
-            invite.style.position = 'fixed';
-            invite.style.top = '0';
-            invite.style.left = '0';
-            invite.style.width = '100vw';
-            invite.style.height = '100vh';
-            invite.style.background = '#ece5dd';
-            invite.style.zIndex = '100';
-            invite.style.display = 'flex';
-            invite.style.alignItems = 'center';
-            invite.style.justifyContent = 'center';
-            // Center the child card
-            var card = invite.querySelector('div[style*="max-width:340px"]');
-            if(card) {
-                card.style.margin = '0 auto';
-            }
-            document.querySelector('.wa-real-container').style.display = 'none';
-            var bgMusic = document.getElementById('wa-bg-music');
-            if(bgMusic) {
-                bgMusic.pause();
-                bgMusic.currentTime = 0;
-            }
-            window.scrollTo({top: 0, behavior: 'auto'});
-        };
-        // Avatar modal
-        document.getElementById('wa-header-avatar').onclick = function() {
-            document.getElementById('wa-modal-profile').style.display = 'flex';
-        };
-        // Call modal
-        document.getElementById('wa-call-btn').onclick = function() {
-            document.getElementById('wa-modal-call').style.display = 'flex';
-            setTimeout(function(){
-                var audio = document.getElementById('wa-call-audio');
-                if(audio) audio.play();
-            }, 300);
-        };
-        function waCloseCall() {
-            document.getElementById('wa-modal-call').style.display = 'none';
-            var audio = document.getElementById('wa-call-audio');
-            if(audio) {
-                audio.pause();
-                audio.currentTime = 0;
-            }
-        }
-        // Video modal
-        document.getElementById('wa-video-btn').onclick = function() {
-            document.getElementById('wa-modal-video').style.display = 'flex';
-            var video = document.querySelector('#wa-modal-video video');
-            if(video) {
-                video.currentTime = 0;
-                video.play();
-            }
-        };
-        // Close video modal and stop video
-        document.querySelector('#wa-modal-video button').onclick = function() {
-            document.getElementById('wa-modal-video').style.display = 'none';
-            var video = document.querySelector('#wa-modal-video video');
-            if(video) {
-                video.pause();
-                video.currentTime = 0;
-            }
-        };
+    <audio id="wa-bg-music" src="ASSET/bgaudio.mp3" loop style="display:none;"></audio>
     
-        // === Chat Send Feature ===
-        const sendBtn = document.getElementById('wa-send-btn');
-        const inputField = document.getElementById('wa-input-field');
-        const chatContainer = document.querySelector('.wa-main');
-
-        function addUserMessage(text) {
-            if (!text.trim()) return;
-
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'wa-msg';
-            msgDiv.style.paddingLeft = '50px';
-            msgDiv.innerHTML = `
-                <div class="wa-bubble me">
-                    <div class="wa-name">${guestName}</div>
-                    ${text}
-                    <span class="wa-time">${new Date().getHours().toString().padStart(2, '0')}.${new Date().getMinutes().toString().padStart(2, '0')} <span class="wa-check"></span></span>
-                </div>
-            `;
-            chatContainer.appendChild(msgDiv);
-
-            // jika observer tersedia, observe pesan baru sehingga akan animasi saat masuk view
-            if (window.waMsgObserver) {
-                window.waMsgObserver.observe(msgDiv);
-            } else {
-                // fallback: buat langsung visible
-                msgDiv.classList.add('visible');
-            }
-
-            // scroll ke bawah (sedikit delay agar render selesai)
-            setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 100);
-
-            inputField.value = '';
-
-            // === AUTO REPLY BOT ===
-            setTimeout(() => {
-                const reply = getBotReply(text);
-                if (reply) addBotMessage(reply);
-            }, 1200); // delay biar kayak orang bales
-        }
-
-function getBotReply(message) {
-    const msg = message.toLowerCase();
-
-    // === Balasan sesuai keyword ===
-    if (/hadir|insyaallah|ikut|datang|pasti/.test(msg))
-        return `Terima kasih ${guestName}! 💚 Kami sangat senang jika ${guestName} bisa hadir di hari bahagia kami 🤗`;
-
-    if (/tidak|nggak|ga bisa|maaf|gak bisa|berhalangan|di luar kota/.test(msg))
-        return `Tidak apa-apa ${guestName}, doa terbaik dari jauh pun sudah membuat kami bahagia 💚`;
-
-    if (/selamat|barakallah|bahagia|congrats|semoga|doa/.test(msg))
-        return `Aamiin, terima kasih banyak ${guestName}! 🤍 Doa dan ucapan indahmu sangat berarti untuk kami.`;
-
-    if (/jam|pukul|waktu|kapan/.test(msg))
-        return `⏰ Acara dimulai <b>Sabtu, 25 Oktober 2025 pukul 10.00 WIB</b> di Gedung Serbaguna Bahagia.`;
-
-    if (/lokasi|tempat|alamat|gedung|maps|dimana|di mana/.test(msg))
-        return `📍 Acara di <b>Gedung Serbaguna Bahagia</b>, Jl. Mawar No. 123, Jakarta.<br>👉 <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank" style="color:#25d366;text-decoration:none;">Lihat Lokasi di Google Maps</a>`;
-
-    if (/dress|tema|baju|pakaian|warna/.test(msg))
-        return `✨ Tidak ada dresscode khusus, ${guestName}. Tapi kalau mau, nuansa <b>hijau tosca</b> cocok banget dengan tema dekor kami 🌿`;
-
-    if (/amplop|rekening|hadiah|kado|transfer|qris|sumbangan/.test(msg))
-        return `🎁 Terima kasih atas perhatiannya ${guestName}! Jika ingin memberikan tanda kasih, bisa melalui rekening BCA <b>1234567890 a.n. Fadiel & Silva</b> atau scan QR yang tersedia di undangan 💚`;
-
-    if (/musik|lagu|backsound|suara/.test(msg))
-        return `🎶 Musik latar sudah diputar, ${guestName}. Semoga menambah suasana hangat saat menikmati undangan kami 💕`;
-
-    if (/fadiel|silva|pengantin|cerita|kisah/.test(msg))
-        return `💍 Fadiel & Silva adalah dua insan yang dipertemukan dengan cara sederhana namun penuh makna. Semoga kisah kami menjadi doa indah juga untukmu 🤍`;
-
-    if (/bikin|undangan online|website|buat/.test(msg))
-        return `🌐 Undangan ini dibuat langsung oleh Fadiel dengan penuh cinta dan sedikit sentuhan kode 😄`;
-
-    if (/makan|doorprize|artis|parkir|mc/.test(msg))
-        return `😂 Haha, pertanyaannya seru banget ${guestName}! Datang aja ya, biar tahu jawabannya di tempat 😄`;
-
-    if (/halo|hai|assalamu|selamat/.test(msg))
-        return `Hai ${guestName}! 👋 Senang banget kamu udah mampir ke undangan kami 💚<br>Ketik <b>hadir</b> untuk konfirmasi, atau <b>info</b> untuk lihat detail acara ya! 😊`;
-
-    if (/info|acara|detail/.test(msg))
-        return `📅 <b>Detail Acara:</b><br>
-        Tanggal: <b>Sabtu, 25 Oktober 2025</b><br>
-        Waktu: <b>10.00 WIB - selesai</b><br>
-        Lokasi: <b>Gedung Serbaguna Bahagia, Jl. Mawar No. 123, Jakarta</b><br>
-        Tema: <b>Hijau Tosca & Putih</b> 🌿`;
-
-    if (/bantuan|help|faq|pertanyaan/.test(msg))
-        return `💬 Berikut beberapa hal yang bisa ${guestName} tanyakan:<br>
-        • <b>hadir</b> → konfirmasi kehadiran<br>
-        • <b>tidak hadir</b> → berhalangan hadir<br>
-        • <b>lokasi</b> / <b>alamat</b> → lihat tempat acara<br>
-        • <b>waktu</b> / <b>jam</b> → lihat jadwal acara<br>
-        • <b>tema</b> / <b>dresscode</b> → tahu warna pakaian<br>
-        • <b>hadiah</b> / <b>amplop</b> → info rekening & QR<br>
-        • <b>musik</b> / <b>lagu</b> → putar musik latar<br>
-        • <b>cerita</b> / <b>kisah</b> → tahu tentang Fadiel & Silva<br>
-        • <b>website</b> / <b>buat</b> → info siapa yang membuat undangan<br><br>
-        Ketik salah satu kata di atas aja, nanti aku jawab otomatis 💚`;
-
-    // === Fallback Default (pesan di luar konteks) ===
-    return `Terima kasih ${guestName}! 😊<br>
-    Sepertinya aku belum paham maksud pesannya nih 😅<br>
-    Tapi ${guestName} bisa coba ketik salah satu dari daftar ini, nanti aku bantu jawab otomatis ya 💚<br><br>
-    📌 <b>Beberapa hal yang sering ditanyakan:</b><br>
-    • <b>hadir</b> → untuk konfirmasi kehadiran<br>
-    • <b>tidak hadir</b> → kalau berhalangan hadir<br>
-    • <b>lokasi</b> / <b>alamat</b> → untuk lihat tempat acara & link Google Maps<br>
-    • <b>waktu</b> / <b>jam</b> → untuk tahu jadwal lengkap acaranya<br>
-    • <b>tema</b> / <b>dresscode</b> → untuk tahu warna & gaya pakaian<br>
-    • <b>hadiah</b> / <b>amplop</b> / <b>rekening</b> → untuk info rekening & QR kado digital<br>
-    • <b>musik</b> / <b>lagu</b> → untuk putar musik latar undangan 🎶<br>
-    • <b>cerita</b> / <b>kisah</b> → untuk tahu sedikit tentang Fadiel & Silva 💍<br>
-    • <b>website</b> / <b>buat</b> → kalau mau tahu siapa yang membuat undangan 😄<br>
-    • <b>bantuan</b> / <b>faq</b> → untuk lihat daftar lengkap pertanyaan yang bisa dijawab<br><br>
-    Kalau ${guestName} masih bingung, ketik aja <b>bantuan</b> — nanti aku bantu arahkan ✨`;
-}
-
-
-
-        // Fungsi untuk menambahkan bubble bot
-        function addBotMessage(text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'wa-msg';
-            msgDiv.innerHTML = `
-                <img src="https://i.ibb.co/2NfQ7Qp/bride.jpg" class="wa-avatar" alt="Silva" />
-                <div>
-                    <div class="wa-bubble">
-                        <div class="wa-name">Silva</div>
-                        ${text}
-                        <span class="wa-time">${new Date().getHours().toString().padStart(2, '0')}.${new Date().getMinutes().toString().padStart(2, '0')} <span class="wa-check"></span></span>
-                    </div>
-                </div>
-            `;
-            chatContainer.appendChild(msgDiv);
-            msgDiv.classList.add('visible');
-            setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 200);
-        }
-
-
-        sendBtn.onclick = function() {
-            addUserMessage(inputField.value);
-        };
-
-        // Tekan Enter untuk kirim
-        inputField.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addUserMessage(inputField.value);
-            }
-        });
-
-        (function(){
-            const chatRoot = document.querySelector('.wa-main'); // scroll container
-            if (!chatRoot) return;
-
-            // ambil semua message yang sudah ada
-            const messages = Array.from(chatRoot.querySelectorAll('.wa-msg'));
-
-            const observerOptions = {
-                root: chatRoot,                 // gunakan container yang discroll
-                rootMargin: '0px 0px -8% 0px',  // tweak: trigger sedikit sebelum elemen benar2 penuh terlihat
-                threshold: 0.06                 // kecil cukup: saat 6% elemen terlihat
-            };
-
-            const io = new IntersectionObserver((entries) => {
-                // filter yang baru masuk dan belum visible, lalu sort dari atas ke bawah
-                const entering = entries
-                .filter(e => e.isIntersecting && !e.target.classList.contains('visible'))
-                .sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-                entering.forEach((entry, idx) => {
-                    const el = entry.target;
-                    const alreadyInView = entry.intersectionRatio > 0.8; // hampir penuh di viewport
-                    const baseDelay = alreadyInView ? (idx * 120) + 400 : idx * 80; 
-                    // kalau sudah kelihatan saat awal, tunda sedikit biar tetap animasi
-
-                    el.style.setProperty('--delay', `${baseDelay}ms`);
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                        io.unobserve(el);
-                    }, baseDelay + 20);
-                });
-
-            }, observerOptions);
-
-            // observe semua pesan awal
-            messages.forEach(m => io.observe(m));
-
-            // expose observer supaya addUserMessage bisa mendaftarkan pesan baru
-            window.waMsgObserver = io;
-            })();
-
-        window.addEventListener('load', () => {
-            // Semua gambar, iframe, dan resource sudah dimuat
-            const loading = document.getElementById('loading-screen');
-            const openBtn = document.getElementById('open-invitation-btn');
-
-            // Hilangkan layar loading dengan fade out
-            loading.style.opacity = '0';
-            setTimeout(() => {
-                loading.style.display = 'none';
-
-                // Tampilkan tombol "Buka Undangan"
-                if (openBtn) {
-                openBtn.classList.add('ready');
-                }
-
-                // Optional: trigger animasi bubble pertama setelah sedikit delay
-                const firstMsgs = document.querySelectorAll('.wa-msg');
-                firstMsgs.forEach((msg, i) => {
-                setTimeout(() => msg.classList.add('visible'), i * 100 + 300);
-                });
-            }, 600);
-        });
-    
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
