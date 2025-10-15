@@ -325,3 +325,39 @@ window.addEventListener('load', () => {
         });
     }, 600);
 });
+
+//Voice note play button
+const btn = document.getElementById('vn-play');
+const audio = document.getElementById('vn-audio');
+const wave = document.getElementById('vn-wave');
+const duration = document.getElementById('vn-duration');
+
+// Tampilkan durasi audio
+audio.addEventListener('loadedmetadata', () => {
+  const secs = Math.floor(audio.duration % 60);
+  duration.textContent = `0:${secs < 10 ? '0' + secs : secs}`;
+});
+
+// Fungsi toggle play/pause
+btn.addEventListener('click', async () => {
+  try {
+    if (audio.paused) {
+      await audio.play(); // play() butuh await agar aman di browser modern
+      btn.textContent = '⏸'; // ubah ke pause
+      wave.classList.add('playing');
+    } else {
+      audio.pause();
+      btn.textContent = '▶'; // ubah ke play
+      wave.classList.remove('playing');
+    }
+  } catch (err) {
+    console.error('Gagal memutar audio:', err);
+  }
+});
+
+// Saat audio selesai
+audio.addEventListener('ended', () => {
+  btn.textContent = '▶';
+  wave.classList.remove('playing');
+  audio.currentTime = 0; // reset ke awal (opsional)
+});
