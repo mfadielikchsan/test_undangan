@@ -24,7 +24,7 @@ body {
     max-width: 430px;
     height: 100vh;
     margin: 0 auto;
-    background-image: url('ASSET/bgwa.png');
+    background-image: url('ASSET/bgwa.jpg');
     background-size: contain; 
     background-position: center;
     background-repeat: repeat;
@@ -309,3 +309,4 @@ body {
 .wa-wave.playing .bar:nth-child(3) { animation: waveAnim 1.2s 0.4s infinite ease-in-out; }
 .wa-wave.playing .bar:nth-child(4) { animation: waveAnim 1.2s 0.6s infinite ease-in-out; }
 .wa-wave.playing .bar:nth-child(5) { animation: waveAnim 1.2s 0.8s infinite ease-in-out; }
+
