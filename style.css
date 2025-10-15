@@ -1,0 +1,287 @@
+/* ================= BODY & CONTAINER ================= */
+body {
+    background: #ece5dd;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.wa-bg {
+    background: #ece5dd;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+}
+
+.wa-real-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+#wa-group-invite {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #ece5dd;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= HEADER ================= */
+.wa-topbar {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(90deg, #075e54 80%, #128c7e 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    z-index: 10;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
+}
+
+.wa-back {
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.wa-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #25d366;
+}
+
+.wa-chat-title {
+    font-weight: 600;
+    font-size: 1.08em;
+    color: #fff;
+}
+
+.wa-chat-status {
+    font-size: 0.9em;
+    color: #d1fae5;
+    font-style: italic;
+}
+
+.wa-topbar-icons {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.wa-topbar-icons span {
+    font-size: 1.4em;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+/* ================= CHAT AREA ================= */
+.wa-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 10px 80px 10px;
+    background: transparent;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+/* Chat bubble */
+.wa-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: chatIn 0.7s forwards;
+}
+
+@keyframes chatIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wa-bubble {
+    background: #fff;
+    border-radius: 18px 18px 18px 8px;
+    padding: 10px 16px;
+    font-size: 1em;
+    max-width: 75%;
+    color: #222;
+    border: 1px solid #e0e7ee;
+    box-shadow: 0 2px 8px rgba(7, 94, 84, 0.1);
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 3px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+.wa-bubble.me {
+    background: #dcf8c6;
+    border-radius: 18px 18px 8px 18px;
+    margin-left: auto;
+    color: #222;
+    border: 1px solid #b2f5ea;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.13);
+    padding: 10px 16px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    display: inline-flex;     
+    flex-wrap: wrap;        
+    align-items: flex-end;    
+    gap: 3px;
+    position: relative;
+}
+
+.wa-name {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #075e54;
+    margin-bottom: 2px;
+    width: 100%;              
+}
+
+.wa-time {
+    margin-left: auto;       
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: #667781;
+    font-size: 0.78em;
+    flex-shrink: 0;          
+}
+
+.wa-check {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-image: url('ASSET/checklist.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* ================= INPUT AREA ================= */
+.wa-chat-input {
+    background: #f0f2f5;
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 20px 20px;
+}
+
+.wa-input-wrapper {
+    background: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 10px 6px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wa-input-wrapper input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1em;
+    color: #222;
+}
+
+.wa-input-wrapper button {
+    background: #25d366;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+}
+
+.wa-input-wrapper button:hover {
+    background: #128c7e;
+}
+
+/* ================= MEDIA QUERIES ================= */
+@media (max-width: 600px) {
+    .wa-real-container {
+        max-width: 100vw;
+        border-radius: 0;
+    }
+
+    .wa-main {
+        padding: 6px 6px 70px 6px;
+    }
+
+    .wa-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wa-bubble, .wa-bubble.me {
+        font-size: 0.95em;
+        padding: 8px 10px 20px 10px;
+        max-width: 90%;
+    }
+
+    .wa-input-wrapper input {
+        font-size: 0.95em;
+    }
+
+    .wa-input-wrapper button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .wa-real-container {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 901px) {
+    .wa-real-container {
+        max-width: 480px;
+    }
+}
+
+/* ================= ANIMATION ================= */
+.wa-msg.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
