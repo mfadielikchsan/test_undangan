@@ -254,6 +254,10 @@ body {
         border-radius: 0;
     }
 
+    .wa-topbar {
+        border-radius: 0;
+    }
+
     .wa-main {
         padding: 6px 6px 70px 6px;
     }
@@ -309,4 +313,5 @@ body {
 .wa-wave.playing .bar:nth-child(3) { animation: waveAnim 1.2s 0.4s infinite ease-in-out; }
 .wa-wave.playing .bar:nth-child(4) { animation: waveAnim 1.2s 0.6s infinite ease-in-out; }
 .wa-wave.playing .bar:nth-child(5) { animation: waveAnim 1.2s 0.8s infinite ease-in-out; }
+
 
