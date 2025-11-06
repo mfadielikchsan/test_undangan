@@ -133,106 +133,32 @@ function addUserMessage(text) {
     `;
     chatContainer.appendChild(msgDiv);
 
-    // jika observer tersedia, observe pesan baru sehingga akan animasi saat masuk view
     if (window.waMsgObserver) {
         window.waMsgObserver.observe(msgDiv);
     } else {
-        // fallback: buat langsung visible
         msgDiv.classList.add('visible');
     }
 
-    // scroll ke bawah (sedikit delay agar render selesai)
     setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 100);
-
     inputField.value = '';
 
     // === AUTO REPLY BOT ===
-    setTimeout(() => {
-        const reply = getBotReply(text);
-        if (reply) addBotMessage(reply);
-    }, 1200); // delay biar kayak orang bales
-}
-function getBotReply(message) {
-    const msg = message.toLowerCase();
-
-    // === Balasan sesuai keyword ===
-    if (/hadir|insyaallah|ikut|datang|pasti/.test(msg))
-        return `Terima kasih ${guestName}! 💚 Kami sangat senang jika ${guestName} bisa hadir di hari bahagia kami 🤗`;
-
-    if (/tidak|nggak|ga bisa|maaf|gak bisa|berhalangan|di luar kota/.test(msg))
-        return `Tidak apa-apa ${guestName}, doa terbaik dari jauh pun sudah membuat kami bahagia 💚`;
-
-    if (/selamat|barakallah|bahagia|congrats|semoga|doa/.test(msg))
-        return `Aamiin, terima kasih banyak ${guestName}! 🤍 Doa dan ucapan indahmu sangat berarti untuk kami.`;
-
-    if (/jam|pukul|waktu|kapan/.test(msg))
-        return `⏰ Acara dimulai <b>Sabtu, 25 Oktober 2025 pukul 10.00 WIB</b> di Gedung Serbaguna Bahagia.`;
-
-    if (/lokasi|tempat|alamat|gedung|maps|dimana|di mana/.test(msg))
-        return `📍 Acara di <b>Gedung Serbaguna Bahagia</b>, Jl. Mawar No. 123, Jakarta.<br>
-        👉 <a href="https://www.google.com/maps?q=Gedung+Serbaguna+Bahagia+Jakarta" target="_blank">Lihat Lokasi di Google Maps</a>`;
-
-    if (/dress|tema|baju|pakaian|warna/.test(msg))
-        return `✨ Tidak ada dresscode khusus, ${guestName}. Tapi kalau mau, nuansa <b>hijau tosca</b> cocok banget dengan tema dekor kami 🌿`;
-
-    if (/amplop|rekening|hadiah|kado|transfer|qris|sumbangan/.test(msg))
-        return `🎁 Terima kasih atas perhatiannya ${guestName}! Jika ingin memberikan tanda kasih, bisa melalui rekening BCA <b>1234567890 a.n. Fadiel & Silva</b> atau scan QR yang tersedia di undangan 💚`;
-
-    if (/musik|lagu|backsound|suara/.test(msg))
-        return `🎶 Musik latar sudah diputar, ${guestName}. Semoga menambah suasana hangat saat menikmati undangan kami 💕`;
-
-    if (/fadiel|silva|pengantin|cerita|kisah/.test(msg))
-        return `💍 Fadiel & Silva adalah dua insan yang dipertemukan dengan cara sederhana namun penuh makna. Semoga kisah kami menjadi doa indah juga untukmu 🤍`;
-
-    if (/bikin|undangan online|website|buat/.test(msg))
-        return `🌐 Undangan ini dibuat langsung oleh Fadiel dengan penuh cinta dan sedikit sentuhan kode 😄`;
-
-    if (/makan|doorprize|artis|parkir|mc/.test(msg))
-        return `😂 Haha, pertanyaannya seru banget ${guestName}! Datang aja ya, biar tahu jawabannya di tempat 😄`;
-
-    if (/halo|hai|assalamu|selamat/.test(msg))
-        return `Hai ${guestName}! 👋 Senang banget kamu udah mampir ke undangan kami 💚<br>
-        Ketik <b>hadir</b> untuk konfirmasi, atau <b>info</b> untuk lihat detail acara ya! 😊`;
-
-    if (/info|acara|detail/.test(msg))
-        return `📅 <b>Detail Acara:</b><br>
-        <div>📆 <b>Tanggal:</b> Sabtu, 25 Oktober 2025</div>
-        <div>🕙 <b>Waktu:</b> 10.00 WIB - selesai</div>
-        <div>📍 <b>Lokasi:</b> Gedung Serbaguna Bahagia, Jl. Mawar No. 123, Jakarta</div>
-        <div>🎨 <b>Tema:</b> Hijau Tosca & Putih 🌿</div>`;
-
-    if (/bantuan|help|faq|pertanyaan/.test(msg))
-        return `💬 Berikut beberapa hal yang bisa ${guestName} tanyakan:<br><br>
-        <div>• <b>hadir</b> → konfirmasi kehadiran</div>
-        <div>• <b>tidak hadir</b> → berhalangan hadir</div>
-        <div>• <b>lokasi</b> → lihat tempat acara</div>
-        <div>• <b>waktu</b> → lihat jadwal acara</div>
-        <div>• <b>tema</b> → tahu warna pakaian</div>
-        <div>• <b>hadiah</b> → info rekening & QR</div>
-        <div>• <b>musik</b> → putar musik latar</div>
-        <div>• <b>cerita</b> → tahu tentang Fadiel & Silva</div>
-        <div>• <b>website</b> → info siapa yang membuat undangan</div><br>
-        Ketik salah satu kata di atas aja, nanti aku jawab otomatis 💚`;
-
-    // === Fallback Default (pesan di luar konteks) ===
-    return `Terima kasih ${guestName}! 😊<br>
-    Sepertinya aku belum paham maksud pesannya nih 😅<br><br>
-    Tapi ${guestName} bisa coba ketik salah satu dari daftar ini, nanti aku bantu jawab otomatis ya 💚<br><br>
-    📌 <b>Beberapa hal yang sering ditanyakan:</b><br><br>
-    <div>• <b>hadir</b> → untuk konfirmasi kehadiran</div>
-    <div>• <b>tidak hadir</b> → kalau berhalangan hadir</div>
-    <div>• <b>lokasi</b> → untuk lihat tempat acara & link Google Maps</div>
-    <div>• <b>waktu</b> → untuk tahu jadwal lengkap acaranya</div>
-    <div>• <b>tema</b> → untuk tahu warna & gaya pakaian</div>
-    <div>• <b>hadiah</b> → untuk info rekening & QR kado digital</div>
-    <div>• <b>musik</b> → untuk putar musik latar undangan 🎶</div>
-    <div>• <b>cerita</b> → untuk tahu sedikit tentang Fadiel & Silva 💍</div>
-    <div>• <b>website</b> → kalau mau tahu siapa yang membuat undangan 😄</div>
-    <div>• <b>bantuan</b> → untuk lihat daftar lengkap pertanyaan yang bisa dijawab</div><br>
-    Kalau ${guestName} masih bingung, ketik aja <b>bantuan</b> — nanti aku bantu arahkan ✨`;
+    setTimeout(async () => {
+        const typingBubble = showTypingIndicator();
+        try {
+            const reply = await getAIReply(text);
+            chatContainer.removeChild(typingBubble); // hapus typing
+            addBotMessage(reply);
+        } catch (e) {
+            console.error(e);
+            chatContainer.removeChild(typingBubble);
+            addBotMessage("Ups, terjadi kesalahan saat memproses balasan.");
+        }
+    }, 1200);
 }
 
-// Fungsi untuk menambahkan bubble bot
+
+// === FUNGSI TAMBAH PESAN BOT ===
 function addBotMessage(text) {
     const msgDiv = document.createElement('div');
     msgDiv.className = 'wa-msg';
@@ -250,6 +176,64 @@ function addBotMessage(text) {
     msgDiv.classList.add('visible');
     setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 200);
 }
+
+// === FUNGSI AI FALLBACK ===
+async function getAIReply(userInput) {
+    try {
+        const response = await fetch("https://dark-tree-ca4b.fadielikchsan1905.workers.dev/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "gpt-4o-mini",
+                messages: [
+                    {
+                        role: "system",
+                        content: `
+                            Kamu adalah asisten ramah yang berbicara seolah-olah kamu adalah pasangan pengantin bernama **Fadiel & Silva 💍**. 
+                            Kamu sedang menjawab pesan dari tamu undangan secara online (melalui tampilan chat seperti WhatsApp). 
+                            Gunakan gaya bicara yang hangat, sopan, romantis, santai, dan penuh keakraban 💚. 
+                            Sapa tamu dengan namanya (${guestName}) agar terasa personal dan akrab.  
+                            Jika pertanyaannya di luar konteks, arahkan kembali dengan lembut ke topik pernikahan atau undangan.
+
+                            Berikut informasi penting tentang acara yang kamu ketahui (gunakan ini untuk menjawab pertanyaan secara alami):
+
+                            📅 **Detail Acara:**
+                            - Tanggal: Sabtu, 25 Oktober 2025
+                            - Waktu: 10.00 WIB - selesai
+                            - Lokasi: Gedung Serbaguna Bahagia, Jl. Mawar No. 123, Jakarta
+                            - Tema: Hijau Tosca & Putih 🌿
+                            - Tidak ada dresscode wajib, tapi nuansa hijau tosca cocok dengan dekorasi.
+                            - Musik latar diputar selama tamu membaca undangan.
+                            - Kisah Fadiel & Silva: dua insan yang dipertemukan dengan cara sederhana namun penuh makna 💞.
+                            - Rekening tanda kasih: BCA 1234567890 a.n. Fadiel & Silva.
+                            - Undangan online ini dibuat langsung oleh Fadiel dengan penuh cinta 💻✨.
+
+                            Cara menjawab:
+                            - Jika tamu bertanya hal seputar waktu, lokasi, pakaian, hadiah, atau ucapan, jawab berdasarkan data di atas.
+                            - Jika tamu memberikan ucapan atau doa, balas dengan penuh terima kasih dan harapan baik.
+                            - Jika tamu bilang hadir, sambut dengan bahagia.
+                            - Jika tamu tidak bisa hadir, balas dengan ucapan terima kasih dan doa terbaik.
+                            - Jika tamu bertanya hal lucu atau di luar konteks, balas dengan ringan tapi tetap sopan.
+
+                            Jangan gunakan gaya formal seperti robot. Gunakan gaya chat seperti teman dekat atau sahabat yang sopan.
+                                                    `
+                    },
+                    { role: "user", content: userInput }
+                ]
+            })
+        });
+
+        const data = await response.json();
+        const aiReply = data.choices?.[0]?.message?.content || "Maaf, aku belum bisa menjawab itu 😅";
+        return `${aiReply}\n\n💍 Salam hangat dari Fadiel & Silva`;
+    } catch (e) {
+        console.error(e);
+        return "Terjadi kesalahan saat menghubungi AI 😢";
+    }
+}
+
 sendBtn.onclick = function() {
     addUserMessage(inputField.value);
 };
@@ -361,3 +345,20 @@ audio.addEventListener('ended', () => {
   wave.classList.remove('playing');
   audio.currentTime = 0; // reset ke awal (opsional)
 });
+
+function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'wa-msg typing-indicator';
+    typingDiv.innerHTML = `
+        <img src="ASSET/ava2.png" class="wa-avatar" alt="Silva" />
+        <div class="wa-bubble">
+            <div class="wa-name">Silva</div>
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    `;
+    chatContainer.appendChild(typingDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    return typingDiv;
+}
