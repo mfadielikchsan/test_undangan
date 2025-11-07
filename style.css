@@ -207,8 +207,8 @@ body {
     align-items: center;
     border-top: 1px solid #ddd;
     border-radius: 0 0 20px 20px;
-    position: -webkit-sticky;
-    bottom: env(safe-area-inset-bottom);
+    position: sticky;
+    bottom: 0;
     width: 100%;
     z-index: 10;
 }
@@ -343,3 +343,4 @@ body {
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1); }
 }
+
